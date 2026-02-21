@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${name} + ' | Portfolio'">Portfolio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <span class="logo" th:text="${name}"></span>
+    <div class="nav-links">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#skills">Skills</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="sobre-mi" class="hero">
+    <h1>Hola, soy <span class="accent" th:text="${name}"></span></h1>
+    <h2 th:text="${title}"></h2>
+    <p  th:text="${bio}"></p>
+    <a th:href="${github}" class="btn" target="_blank">Ver GitHub</a>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+    <h2>Mis Proyectos</h2>
+    <div class="projects-grid">
+        <div class="project-card" th:each="p : ${projects}">
+            <h3 th:text="${p.title}"></h3>
+            <p  th:text="${p.description}"></p>
+            <span class="tech" th:text="${p.technologies}"></span>
+            <div class="project-links">
+                <a th:href="${p.githubUrl}" target="_blank">GitHub</a>
+                <a th:if="${p.liveUrl != null}"
+                   th:href="${p.liveUrl}" target="_blank">Demo</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-item" th:each="s : ${skills}">
+            <div class="skill-header">
+                <span th:text="${s.name}"></span>
+                <span class="category" th:text="${s.category}"></span>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-fill"
+                     th:style="'width: ' + ${s.level * 20} + '%'"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Tienes un proyecto en mente? Escríbeme.</p>
+    <a th:href="'mailto:' + ${email}" class="btn"
+       th:text="${email}"></a>
+</section>
+
+</body>
+</html>
