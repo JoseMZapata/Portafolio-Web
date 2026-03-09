@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title th:text="${name} + ' | Portfolio'">Portfolio</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}"/>
 </head>
 <body>
 
@@ -21,10 +21,14 @@
 
 <!-- HERO -->
 <section id="sobre-mi" class="hero">
+    <span class="hero-tag">👋 Disponible para trabajar</span>
     <h1>Hola, soy <span class="accent" th:text="${name}"></span></h1>
     <h2 th:text="${title}"></h2>
-    <p  th:text="${bio}"></p>
-    <a th:href="${github}" class="btn" target="_blank">Ver GitHub</a>
+    <p th:text="${bio}"></p>
+    <div class="hero-buttons">
+        <a th:href="${github}" class="btn btn-primary" target="_blank">Ver GitHub</a>
+        <a href="#contacto" class="btn btn-outline">Contacto</a>
+    </div>
 </section>
 
 <!-- PROYECTOS -->
